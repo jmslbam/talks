@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>WordPress theming - A front-end development talk</title>
+
+    <meta name="description" content="A WordPress theming development talk. Don't repeat yourself">
+    <meta name="author" content="Jaime Martínez">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,300,400&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/jaimemartinez.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+<section>
+  <h1>WordPress theming</h1>
+  <h3>Above and beyond</h3>
+  <p>
+    <small>
+  Jaime Martínez | <a href="http://twitter.com/jmsblam">@jmslbam</a> | #wpmfrl | 23 april 2015</small>
+  </p>
+</section>
+
+<section data-markdown>
+  # Hola
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+    # Jaime Martinez
+
+    Happy coder @ <a href="http://level-level.com">Level Level</a>
+
+    Feature contributor and tester <a href="http://wp-cli.org">WP-CLI</a>
+
+    Long time WordPress enthousiast
+
+    Fellow WPMeetup010 organiser
+    </script>
+</section>
+
+<section>
+  <h1>
+    Let me seduce you to the 
+    <br>
+    proper theming side
+  </h1>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+    # Overall thought
+    ## DRY <a href='http://www.artima.com/intv/dry.html'>#</a>
+
+    Don't Repeat Yourself
+
+    DRY results in flexible and maintainable software
+<i style="display:none">'</i>
+  </script>
+</section>
+
+
+
+<section class="" data-id="2fc3c7b4b47c6967bf20e8e83c30c336">
+  <h2>
+    So new to WordPress and themes?
+  </h2>
+  <p>
+    <br>
+  </p>
+  <p>
+    Start here
+  </p>
+  <p>
+    <a href="http://make.wordpress.org/docs/theme-developer-handbook/">
+      http://make.wordpress.org/docs/theme-developer-handbook/
+    </a>
+  </p>
+</section>
+
+<section class="" data-id="2068179c094ad12a4a95c992d0ad2bbc">
+  <h1>
+    kthxbye
+  </h1>
+</section>
+<section class="" data-id="bd8b02a99b6a6aa066537f8162aadc12">
+  <h1>
+    What do you need?
+  </h1>
+  Some knowledge of HTML &amp; PHP comes in handy
+  <br>
+  and some developertools
+  <br>
+</section>
+
+<section>
+  <h1>
+    No really
+  </h1>
+  <p>
+    Read: <br><br>
+    <a href="http://codex.wordpress.org/WordPress_Semantics#Terminology_Related_to_Design">
+      Terminology Related to Design
+    </a>
+    <br><br>
+  </p>
+  
+  <p>
+    then the
+    <br><br>
+  </p>
+  <p>
+    <a href="http://make.wordpress.org/docs/theme-developer-handbook/">
+      handbook
+    </a>
+  </p>
+</section>
+
+<section>
+  <h1>
+    Learn to debug
+  </h1>
+</section>
+<section class="" data-id="85d5b9b6df41b928834197c96a4d50a0">
+  <h2>
+    Turn on debug info! 
+    <a href="http://codex.wordpress.org/Debugging_in_WordPress">
+      #
+    </a>
+  </h2>
+  <p>
+    wp-config.php
+  </p>
+  <pre>
+<code>
+define( 'WP_DEBUG', true );
+
+if ( WP_DEBUG ) {
+
+  define( 'SCRIPT_DEBUG', true );
+
+  define( 'WP_DEBUG_LOG', true );
+
+  define( 'WP_DEBUG_DISPLAY', true );
+
+  @ini_set( 'display_errors', 1 );
+}
+</code></pre>
+</section>
+<section>
+  <h2>
+    Turn on debug info!
+  </h2>
+  php.ini
+  <br>
+  <pre><code>
+  display_errors = On;
+
+  error_reporting = E_ALL | E_STRICT; 
+  </code></pre>
+  <p>
+    Also install Xdebug
+  </p>
+  <br>
+  Thanks Barry!
+</section>
+<section>
+  <h2>
+    Development plugins
+  </h2>
+  <p>
+    <a href="http://wordpress.org/plugins/debug-bar/">
+      Debug bar
+    </a>
+    | 
+    <a href="http://tidyrepo.com/debug-bar/">
+      more info
+    </a>
+  </p>
+  <br>
+  <p>
+    <a href="http://wordpress.org/plugins/what-the-file/">
+      What the file
+    </a>
+    | 
+    <a href="http://www.barrykooij.com/what-the-file/">
+      more info
+    </a>
+  </p>
+  <img src="/images/screenshot-1_1_.png">
+  <br>
+</section>
+<section>
+  <h1>
+    So where's the party?
+    <br>
+  </h1>
+</section>
+<section>
+  <h2>
+    User proper themes
+  </h2>
+  <ul class="unstyled text-center">
+    <li>
+      <a href="https://github.com/Automattic/_s">_s</a>
+    </li>
+    <li>
+      <a href="http://roots.io/sage">Sage (old Roots)</a>
+    </li>
+    
+    <li>
+      <a href="http://my.studiopress.com/themes/genesis/">Genesis</a>
+    Framework <a href="http://nostromo.nl/waarom-gebruik-ik-genesis/">#</a>
+    </li>
+    <li>
+      <a href="http://themble.com/bones/">Bones</a>
+    </li>
+    
+    <li>
+      <a href="http://themehybrid.com/hybrid-core">
+        Hybrid
+      </a>
+    </li>
+    <li>
+      <a href="http://themeshaper.com/thematic/">
+        Thematic
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>
+    Theme anatomy
+  </h2>
+  <pre><code>
+    wp-content/themes/* 
+    </code></pre>
+  <div>
+    <br>
+  </div>
+  <p>
+    Themes consist of a collection of HTML, CSS, PHP and probably JavaScript files
+  </p>
+  <ul>
+    <li>
+      style.css
+    </li>
+    <li>
+      functions.php
+    </li>
+    <li>
+      index.php
+    </li>
+    <li>
+      ...
+    </li>
+  </ul>
+</section>
+
+
+<section>
+  <h2>
+    functions.php
+  </h2>
+  <p>
+    don't put everything in this file... organize it!
+  </p>
+  <p>
+    <a href="https://github.com/roots/sage/blob/master/functions.php">
+      Like Sage (old Roots)
+    </a>
+  </p>
+  <p><br /></p>
+  <p>Or use an Autoloader with PSR-0 or PSR-4 (no single solution)</p>
+</section>
+
+<section>
+  <h2>
+    functions.php
+  </h2>
+  <div>
+    <img style="width: 937px; height: 448.578px; max-height: none; max-width: none;" src="/images/functions.php.png">
+  </div>
+</section>
+
+<section>
+  <h2>
+    Theme anatomy 
+    <a href="http://make.wordpress.org/docs/theme-developer-handbook/theme-basics/theme-files/">
+      #
+    </a>
+    <br>
+  </h2>
+  <a href="https://github.com/Automattic/_s/blob/master/index.php">
+    index.php
+  </a>
+  calls
+  <br>
+  <p>
+    <br>
+  </p>
+  <ul>
+    <li>
+      get_header();
+    </li>
+    <li>
+      <a href="http://codex.wordpress.org/The_Loop">
+        The Loop
+      </a>
+      <br>
+    </li>
+    <li>
+      get_sidebar();
+    </li>
+    <li>
+      get_footer();
+    </li>
+  </ul>
+</section>
+<section>
+  <h2>
+    Theme anatomy
+  </h2>
+  <div>
+    <img class="fit" src="/images/index.php.png">
+  </div>
+</section>
+
+<section>
+  <h1>
+    Template hierarchy
+  </h1>
+</section>
+<section data-background-size="cover" data-background-image="/images/Template_Hierarchy.png">
+  <h2 style="color: ghostwhite; background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.5);">
+    Say WHUT? 
+    <a href="https://make.wordpress.org/docs/theme-developer-handbook/theme-basics/template-hierarchy/#visual-overview">
+      #
+    </a>
+    <br>
+  </h2>
+</section>
+
+<section>
+  <h2>Template hierarchy</h2>
+  <p>
+    The Template file used to render the Archive Index page for a 
+    <a title="Custom Post Types" href="http://codex.wordpress.org/Post_Types#Custom_Post_Types">
+      Custom Post Type
+    </a>
+  </p>
+  <ol>
+    <li>
+      <code>
+        archive-{post_type}.php
+      </code>
+      – If the 
+      <a title="Post Types" href="http://codex.wordpress.org/Post_Types">
+        post type
+      </a>is 
+      <code>product</code>,
+      <br>WordPress will look for<code> archive-product.php</code>.
+    </li>
+    <li>
+      <code>
+        archive.php
+      </code>
+    </li>
+    <li>
+      <code>
+        index.php
+      </code>
+    </li>
+  </ol>
+</section>
+
+
+<section>
+  <h2>
+    Template hierarchy Page 
+    <a href="http://make.wordpress.org/docs/theme-developer-handbook/theme-basics/template-hierarchy/#page" class="anchor">
+      #
+    </a>
+  </h2>
+  
+  <p>
+    The Template file used to render a static page (
+    <code>
+      page
+    </code>
+    post-type)
+  </p>
+  <ol>
+    <li>
+      <code>
+        Custom template file
+      </code>
+      – The 
+      <a title="http://codex.wordpress.org/Page_Templates" href="http://codex.wordpress.org/Page_Templates#Custom_Page_Template">
+        Page Template
+      </a>assigned to the Page.
+    </li>
+    <li class="fade">
+      <code>
+        page-{slug}.php
+      </code>
+      – If the page slug is 
+      <b>
+        recent-news
+      </b>
+      , WordPress will look to use 
+      <code>
+        page-recent-news.php
+      </code>
+    </li>
+    <li class="fade">
+      <code>
+        page-{id}.php
+      </code>
+      – If the page ID is 
+      <b>
+        6
+      </b>
+      , WordPress will look to use 
+      <code>
+        page-6.php
+        <br>
+      </code>
+    </li>
+    <li>
+      <code>
+        page.php
+      </code>
+    </li>
+    <li>
+      <code>
+        index.php
+      </code>
+    </li>
+  </ol>
+  <p>
+    <font color="#ffffff">
+      <span style="background-color: rgb(0, 0, 0);">
+        <code>
+          Please don't use 2 &amp; 3  
+        </code>
+      </span>
+    </font>
+    <br>
+  </p>
+</section>
+<section data-markdown>
+# These were complete pages
+</section>
+
+<section>
+  <h2>
+    Get a template part - 
+    <a href="http://kovshenin.com/2013/get_template_part/">
+      #
+    </a>
+    <br>
+  </h2>
+  <h3>
+    DRY
+  </h3>
+  <p>
+    get_template_part
+  </p>
+  <p>
+    get_template_part
+  </p>
+  <p>
+    get_template_part
+  </p>
+  <p>
+    get_template_part
+  </p>
+  <p>
+    get_template_part
+  </p>
+  <p>
+    get_template_part
+  </p>
+  <br>
+</section>
+<section>
+  <h2>
+    Get a template part
+  </h2>
+  <img src="/images/post-template.png">
+</section>
+
+<section>
+  <h2>
+    get_template_part
+  </h2>
+  <img src="/images/post-news.png">
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ## get_template_part
+  
+  ```
+  <?php
+  /*
+  Template Name: Front page
+  */
+  ?>
+  <?php get_header(); ?>
+  <div class="main">
+    <?php get_template_part('templates/post', 'highlighted'); ?>
+    <?php get_template_part('templates/post', 'latest'); ?>
+  </div>
+  <div class="sidebar">
+    <?php get_template_part('templates/event', 'highlighted'); ?>
+    <?php get_template_part('templates/event', 'latest'); ?>
+  </div>
+  <?php get_footer(); ?>
+  ```
+  </script>
+</section>
+
+<section>
+  <h2>
+    get_template_part
+  </h2>
+  <img src="/images/post-news.png">
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ## get_template_part
+
+ ```
+ <?php
+/*
+Template Name: News
+*/
+?>
+
+<div class="main">
+  <?php get_template_part('templates/post', 'highlighted'); // The same ?>
+</div>
+<div class="sidebar">
+  <?php get_template_part('templates/post', 'latest'); ?>
+
+  <p class="list-view-all-link">
+    <a class="read-more" href="<?php echo $archive_page; ?>"><?php echo __("More news", "sharedstories"); ?></a>
+  </p>
+</div>
+ ```
+ </script>
+</section>
+
+<section>
+  <img src="/images/post-news.png">
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ### templates/post-highlighted.php
+
+  ```
+  <article <?php post_class('highlighted'); ?>>
+    
+    <header>
+      <?php get_template_part('templates/post', 'meta'); ?>
+      <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+    </header>
+
+    <?php
+    if ( has_post_thumbnail() ) :
+        the_post_thumbnail('medium'); 
+    endif; ?>
+
+    <div class="entry-summary">
+      <?php echo ll_excerpt_by_id( get_the_ID(), POST_EXCERPT_LENGTH , roots_excerpt_more( true ) ); ?>
+    </div>
+  </article>
+
+  ```
+  </script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ##  templates/post-meta.php
+
+  ```
+<?php if( is_front_page() ) { ?>
+
+  <?php get_template_part('templates/entry-meta', 'time'); ?>
+
+<?php } else {
+
+  $post_taxonomies = get_object_taxonomies( $post ); ?>
+  <p class="meta">
+  <?php get_template_part('templates/entry-meta', 'time'); ?>   
+
+    <?php echo get_the_term_list( get_the_ID(), $post_taxonomies, '&nbsp;-&nbsp; <span class="lc">', '</span>, <span class="lc">', '</span>' ); ?>
+    - <span class="byline author vcard"><a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>" rel="author" class="fn"><?php echo get_the_author(); ?></a></span>
+  </p>
+
+<?php } ?>
+  ```
+  </script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ## templates/entry-meta-time.php
+  
+  ```
+  <?php $d = "d M";?>
+  <span class="date">
+      <time class="updated" datetime="<?php echo get_the_time('c'); ?>"><?php echo get_the_date( $d ); ?></time>
+  </span>
+  ```
+  </script>
+</section>
+
+<section data-markdown>
+  #  So split things up in parts!
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+    ## Render a template part
+
+  <p>
+    Pass $args to a template file 
+    <a href="https://github.com/humanmade/hm-core/blob/master/hm-core.functions.php#L1242">
+      #
+    </a>
+  </p>
+  <p>
+    `/templates/contact-persons.php`
+  </p>
+
+  ```
+foreach ( $people as $key => $person ) {
+
+  $people .= hm_get_template_part(
+    'templates/contact-person',
+    array(
+      'person' => $person['contact_person'],
+      'return' => true
+      ),
+    false
+  );      
+
+}
+echo $people;
+  ```
+  </script>
+</section>
+
+<section>
+  <h1>
+    Even widgets can have templates
+    <br>
+  </h1>
+</section>
+
+<section>
+  <h2>
+    Templates in widgets
+  </h2>
+  <div>
+    <img src="/images/widget-form.png">
+  </div>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  <h2>
+    Templates in widgets 
+    <a href="https://github.com/tommcfarlin/WordPress-Widget-Boilerplate">
+      #
+    </a>
+  </h2>
+  
+  Simply include the templates from `plugins/ll-image-widget/widget.php`
+  
+  ```
+public function form( $instance ) {
+
+  $defaults = array( 'image-id' => false, 'image-preview' => '', 'url' => false );
+
+  $instance        = wp_parse_args( $instance, $defaults );
+
+  $image_preview   = esc_url_raw( $instance['image-preview'] );
+  $image_id        = absint( $instance['image-id'] );
+  $image_thumbnail = $this->get_image_preview( $image_id );
+
+  $url              = esc_url_raw( $instance['url'] );
+
+  // Display the admin form
+  include( plugin_dir_path(__FILE__) . 'views/admin.php' );
+}
+  ```
+  </script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ## Templates in widgets 
+
+  `plugins/ll-image-widget/views/admin.php`
+
+  
+  ```
+  <!-- This file is used to markup the administration form of the widget. -->
+
+<p class="ll-sidebar-widget-image"><?php echo $image_thumbnail; ?></p>
+<p>
+  <a class="ll-sidebar-widget-image-button button button-secondary" data-uploader_title="Select banner" >Select image</a>
+</p>
+<p>
+  <label for="<?php echo $this->get_field_name('url'); ?>">Link</label>
+  <input class="ll-sidebar-widget-url widefat" type="text" name="<?php echo $this->get_field_name('url'); ?>" value="<?php echo esc_attr($url); ?>" />
+</p>
+<input class="ll-sidebar-widget-image-preview" type="hidden" name="<?php echo $this->get_field_name('image-preview'); ?>" value="<?php echo esc_attr( $image_preview ); ?>" />
+<input class="ll-sidebar-widget-image-id" type="hidden" name="<?php echo $this->get_field_name('image-id'); ?>" value="<?php echo esc_attr( $image_id ); ?>" />
+  ```
+  </script>
+</section>
+
+<section>
+  <h1>
+    Overwriting stuff
+  </h1>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  <h2>
+    Child theme 
+    <a href="http://make.wordpress.org/docs/theme-developer-handbook/advanced-theme-topics/child-themes/">
+      #
+    </a>
+    <br>
+  </h2>
+  <p>
+    Child themes are themes that piggy-back on another (full) theme.
+    <br>
+    It only overrides the bare necessary
+  </p>
+  <ul>
+    <li>
+      `functions.php` loads before and in addition to it's parent them
+    </li>
+    <li>
+      No child theme limbo'
+    </li>
+  </ul>
+  </script>
+</section>
+
+<section>
+  <h2>
+    Why child themes?
+  </h2>
+  <p>
+    Updates!
+  </p>
+  <p>
+    One theme to rule them all...
+    <br>
+  </p>
+  <p>Anyone something else?</p>
+</section>
+
+<section>
+  <h2>
+    Why not child themes?
+  </h2>
+  <p>
+    Payed theme builders don't take care backwards compatibility
+  </p>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ## Overwriting Plugin X
+
+  Simply copy it into a directory within your theme named `/woocommerce` keeping the same filestructure
+  
+  *Not really recommended by Barry*
+
+  <pre><code>woocommerce/templates/cart/cart.php</code></pre>
+  <p>
+    to
+  </p>
+
+  <pre><code>your-theme/woocommerce/cart/cart.php</code></pre>
+  </script>
+</section>
+
+<section>
+  <h2>
+    Overwriting WooCommerce
+  </h2>
+  <img class="fit" src="/images/woo-overwrite-templates.png">
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ## Use Filters and Hooks [#1](http://docs.woothemes.com/document/tutorial-customising-checkout-fields-using-actions-and-filters/) [#2](http://docs.woothemes.com/document/tutorial-customising-checkout-fields-using-actions-and-filters/)
+
+  *Recommended by Barry because better updateable*
+
+  ```
+// Hook in
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+
+// Our hooked in function - $fields is passed via the filter!
+function custom_override_checkout_fields( $fields ) {
+     $fields['order']['order_comments']['placeholder'] 
+     = 'My new placeholder';
+     return $fields;
+}
+  ```
+  </script>
+</section>
+
+<section data-markdown>
+  # Again DRY
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  <h2>
+    Reuse existing code <a href="http://tri.be/shop/wordpress-events-calendar/">#</a>
+  </h2>
+
+  ### The Events Calendar
+
+  ```
+<?php $args = array(
+  'posts_per_page' => 3,
+);
+$query = TribeEventsQuery::getEvents( $args, true );
+
+if ( $query->tribe_is_event && $query->posts ) : $query->the_post(); ?>
+    
+  <article class="hentry tribe-event">
+      <?php tribe_get_template_part( 'list/single', 'event' ); ?>
+  </article>
+
+<?php endif;
+
+// Clean up
+$event = $query = $highlighted_event = false;
+wp_reset_postdata();
+?>
+  ```
+  </script>
+</section>
+
+<section>
+  <h1>
+    kthxbye
+  </h1>
+</section>
+
+<section>
+  <h2>Stalk me: </h2>
+  <ul class="unstyled text-center">
+    <li><a class="btn btn-tweet" target="_blank" href="http://twitter.com/jmslbam" title="Jaime Martinez on Twitter">Twitter</a></li>
+    <li><a class="btn btn-github" target="_blank" href="http://github.com/jmslbam" title="Jaime Martinez on GitHub">GitHub</a></li>
+  </ul>
+  <p class="copy">Jaime Martinez a.k.a. JMSLBAM</p>
+</section>
+
+
+<section>
+  <h1>
+    Extra goodies
+  </h1>
+</section>
+
+<!-- <section data-markdown>
+  <script type="text/template">
+  <h2>
+    Conditional Tags 
+    <a href="http://codex.wordpress.org/Conditional_Tags">
+      #
+    </a>
+    <br>
+  </h2>
+  <p>
+    Checks where you are on the site
+  </p>
+  <ul>
+    <li>
+        <a href="http://codex.wordpress.org/Function_Reference/is_home" class="external text" title="http://codex.wordpress.org/Function_Reference/is_home">
+          is_home()
+        </a>
+    </li>
+    <li>
+        <a href="http://codex.wordpress.org/Function_Reference/is_admin" class="external text" title="http://codex.wordpress.org/Function_Reference/is_admin">
+          is_admin()
+        </a>
+    </li>
+    <li>
+      <tt>
+        <a href="http://codex.wordpress.org/Function_Reference/is_single" class="external text" title="http://codex.wordpress.org/Function_Reference/is_single">
+          is_single()
+        </a>
+      </tt>
+    </li>
+    <li>
+        <a href="http://codex.wordpress.org/Function_Reference/is_singular" class="external text" title="http://codex.wordpress.org/Function_Reference/is_singular">
+          is_singular()
+        </a>
+    </li>
+  </ul>
+
+  </script>
+</section>
+
+<section data-markdown>
+  <script type="text/template">
+  ```
+  // function.php ;)
+
+function ll_conditional_custom_category_limit( $query ) {
+
+    if ( is_admin() || ! $query->is_main_query() )
+        return;
+
+    if ( is_archive('specific-term') ) {
+        $query->set( 'posts_per_page', 1 );       
+        return;
+    }
+}
+add_action( 'pre_get_posts', 'll_conditional_custom_category_limit', 1 );
+  ```
+  </script>
+</section>
+
+<section>
+  <h2>
+    Enqueue scripts / styles 
+    <a href="http://make.wordpress.org/docs/theme-developer-handbook/theme-basics/including-css-and-javascript">
+      #
+    </a>
+  </h2>
+  <p>
+    Why? 
+    Caching plugins / Minify plugins!
+  </p>
+  <p>
+    Unload 
+    <a href="http://codex.wordpress.org/Function_Reference/wp_dequeue_style">
+      stylesheets
+    </a>
+    and 
+    <a href="http://codex.wordpress.org/Function_Reference/wp_dequeue_script">
+      scripts
+    </a>
+    from plugins
+    <br>
+  </p>
+  <pre>
+<code class="php wide">
+/**
+* Enqueue scripts and styles.
+*/
+function _s_scripts() {
+  wp_enqueue_style( '_s-style', get_stylesheet_uri() );
+
+  wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+
+  if ( is_singular() &amp;&amp; comments_open() &amp;&amp; get_option( 'thread_comments' ) ) {
+    wp_enqueue_script( 'comment-reply' );
+  }
+}
+add_action( 'wp_enqueue_scripts', '_s_scripts' );
+</code></pre>
+
+</section> -->
+
+<section data-markdown>
+  <script type="text/template">
+  
+  #
+    Security 
+    <a href="http://codex.wordpress.org/Data_Validation">
+      #
+    </a>
+    <a href="http://codex.wordpress.org/Data_Validation">
+    </a>
+  </h2>
+  
+  Prevent XSS attacks, escape your data!
+  
+  - esc_url
+  - esc_html
+  - esc_attr
+  - absint( $int )
+  - <a href="http://codex.wordpress.org/Function_Reference/sanitize_title" title="Function Reference/sanitize title">sanitize_title</a>
+  - <a href="http://codex.wordpress.org/Class_Reference/wpdb#Protect_Queries_Against_SQL_Injection_Attacks" title="Class Reference/wpdb">$wpdb->prepare</a>
+  - <a href="http://codex.wordpress.org/Function_Reference/wp_safe_redirect" title="Function Reference/wp safe redirect">wp_safe_redirect</a>
+
+  </script>
+</section>
+
+
+
+<section>
+  <h2>
+    Tips and tricks *
+  </h2>
+  Use the 
+  <a href="http://codex.wordpress.org/Function_Reference/wp_remote_get">
+    WordPress API's 
+  </a>
+  <a href="http://codex.wordpress.org/Function_Reference/wp_remote_get">
+    #
+  </a>
+  <br>
+  <br>
+  <a href="http://codex.wordpress.org/WordPress_Coding_Standards">
+    Coding Standards
+  </a>
+  <br>
+  <br>
+  Analyse other peoples work
+  <br>
+  <br>
+  Read some nice websites like 
+  <a href="http://www.poststat.us">
+    http://www.poststat.us
+  </a>
+  <br>
+  <br>
+  Follow the 
+  <a href="https://twitter.com/wpdevel">
+    WordPress Devel
+  </a>
+  Twitter account
+  <br>
+  <br>
+  Follow  developers like Nacin or ?
+  <div>
+    <span>
+      <br>
+    </span>
+    <div>
+      <span>
+        Use Git
+        <br>
+      </span>
+      <p>
+        <br>
+      </p>
+      <p>
+        <br>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <h2>
+    The setup *
+  </h2>
+  <p>
+  <a href="https://github.com/Varying-Vagrant-Vagrants/VVV">
+    Varying Vagrant Vagrants
+  </a>
+  <br>
+  <a href="http://roots.io/wordpress-stack/">Bedrock</a>
+  </p>
+</section>
+
+<section>
+  <h2>
+    Tools and skills *
+  </h2>
+  
+  <h3>
+    Editor
+  </h3>
+  <p>
+    <a href="http://www.sublimetext.com/3">
+      Sublime
+    </a>
+    , 
+    <a href="http://www.jetbrains.com/phpstorm/">
+      PHPStorm
+      <br>
+    </a>
+  </p>
+  <br>
+
+  <h3>
+    Browsers
+  </h3>
+  <p>
+    FireFox and 
+    <a href="https://addons.mozilla.org/firefox/addon/web-developer/">
+      Web Developer
+    </a>
+    + 
+    <a href="https://addons.mozilla.org/firefox/addon/firebug/">
+      FireBug
+    </a>
+    
+    <br>
+  </p>
+  <p>
+    Chrome and
+    <a href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
+      Web Developer
+    </a>
+    + 
+    <a href="https://developers.google.com/chrome-developer-tools/">
+      Chrome tools
+    </a>
+  </p>
+  <p>
+    <span>
+      Internet Explorer 
+    </span>
+    <span>
+      + 
+      <a href="http://www.microsoft.com/en-us/download/details.aspx?id=18359">
+        developer toolbar
+      </a>
+    </span>
+    or 
+    <span>
+      <a href="loc.modern.ie/nl/virtualization-tools#downloads">
+        modern.ie
+      </a>
+      || 
+      <a href="https://github.com/xdissent/ievms">
+        ievms
+      </a>
+    </span>
+    <span>
+    </span>
+    <a href="https://developers.google.com/chrome-developer-tools/">
+      <br>
+    </a>
+  </p>
+  <p>
+    <br>
+    <a href="https://developers.google.com/chrome-developer-tools/">
+    </a>
+  </p>
+</section>
+
+<section>
+  <h2>
+    Tools and skills II *
+  </h2>
+ 
+  <h3>
+      GIT
+  </h3>
+  <p>
+    <a href="https://bitbucket.org">
+      Bitbucket
+    </a>
+    , 
+    <a href="https://github.com">
+      GitHub
+    </a>
+  </p>
+  <p>
+    <br>
+  </p>
+  <h3>
+    <span>
+      CMD
+    </span>
+    <br>
+  </h3>
+  <a href="https://github.com/robbyrussell/oh-my-zsh" class="js-current-repository js-repo-home-link">
+    oh-my-zsh
+  </a>
+  &amp; off course 
+  <a href="http://www.wp-cli.org">
+    WP-CLI
+  </a>
+  ^^
+  <p>
+  </p>
+  <p>
+    <br>
+    <a href="https://developers.google.com/chrome-developer-tools/">
+    </a>
+  </p>
+</section>
+
+<section>
+  <h1>
+    rly kthxbye
+  </h1>
+</section>
+
+
+
+      </div>
+
+    </div>
+    <!-- End of Reveals sectiosn divs -->
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

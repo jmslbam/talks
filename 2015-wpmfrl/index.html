@@ -106,12 +106,12 @@
   </p>
 </section>
 
-<section class="" data-id="2068179c094ad12a4a95c992d0ad2bbc">
+<section>
   <h1>
     kthxbye
   </h1>
 </section>
-<section class="" data-id="bd8b02a99b6a6aa066537f8162aadc12">
+<section>
   <h1>
     What do you need?
   </h1>
@@ -139,7 +139,7 @@
   </p>
   <p>
     <a href="http://make.wordpress.org/docs/theme-developer-handbook/">
-      handbook
+      Theme handbook
     </a>
   </p>
 </section>
@@ -286,75 +286,6 @@ if ( WP_DEBUG ) {
   </ul>
 </section>
 
-
-<section>
-  <h2>
-    functions.php
-  </h2>
-  <p>
-    don't put everything in this file... organize it!
-  </p>
-  <p>
-    <a href="https://github.com/roots/sage/blob/master/functions.php">
-      Like Sage (old Roots)
-    </a>
-  </p>
-  <p><br /></p>
-  <p>Or use an Autoloader with PSR-0 or PSR-4 (no single solution)</p>
-</section>
-
-<section>
-  <h2>
-    functions.php
-  </h2>
-  <div>
-    <img style="width: 937px; height: 448.578px; max-height: none; max-width: none;" src="images/functions.php.png">
-  </div>
-</section>
-
-<section>
-  <h2>
-    Theme anatomy 
-    <a href="http://make.wordpress.org/docs/theme-developer-handbook/theme-basics/theme-files/">
-      #
-    </a>
-    <br>
-  </h2>
-  <a href="https://github.com/Automattic/_s/blob/master/index.php">
-    index.php
-  </a>
-  calls
-  <br>
-  <p>
-    <br>
-  </p>
-  <ul>
-    <li>
-      get_header();
-    </li>
-    <li>
-      <a href="http://codex.wordpress.org/The_Loop">
-        The Loop
-      </a>
-      <br>
-    </li>
-    <li>
-      get_sidebar();
-    </li>
-    <li>
-      get_footer();
-    </li>
-  </ul>
-</section>
-<section>
-  <h2>
-    Theme anatomy
-  </h2>
-  <div>
-    <img class="fit" src="images/index.php.png">
-  </div>
-</section>
-
 <section>
   <h1>
     Template hierarchy
@@ -371,7 +302,7 @@ if ( WP_DEBUG ) {
 </section>
 
 <section>
-  <h2>Template hierarchy</h2>
+  <h2>Template hierarchy - CPT</h2>
   <p>
     The Template file used to render the Archive Index page for a 
     <a title="Custom Post Types" href="http://codex.wordpress.org/Post_Types#Custom_Post_Types">
@@ -406,7 +337,7 @@ if ( WP_DEBUG ) {
 
 <section>
   <h2>
-    Template hierarchy Page 
+    Template hierarchy - Page 
     <a href="http://make.wordpress.org/docs/theme-developer-handbook/theme-basics/template-hierarchy/#page" class="anchor">
       #
     </a>
@@ -484,7 +415,83 @@ if ( WP_DEBUG ) {
 
 <section>
   <h2>
-    Get a template part - 
+    functions.php
+  </h2>
+  <p>
+    don't put everything in this file... organize it!
+  </p>
+  <p>
+    <a href="https://github.com/roots/sage/blob/master/functions.php">
+      Like Sage (old Roots)
+    </a>
+  </p>
+  <p><br /></p>
+  <p>Or use an Autoloader with PSR-0 or PSR-4 (no single solution)</p>
+</section>
+
+<section>
+  <h2>
+    functions.php
+  </h2>
+  <div>
+    <img style="width: 937px; height: 448.578px; max-height: none; max-width: none;" src="images/functions.php.png">
+  </div>
+</section>
+
+<section>
+  <h2>
+    Theme anatomy 
+    <a href="http://make.wordpress.org/docs/theme-developer-handbook/theme-basics/theme-files/">
+      #
+    </a>
+    <br>
+  </h2>
+  <a href="https://github.com/Automattic/_s/blob/master/index.php">
+    index.php
+  </a>
+  calls
+  <br>
+  <p>
+    <br>
+  </p>
+  <ul>
+    <li>
+      get_header();
+    </li>
+    <li>
+      <a href="http://codex.wordpress.org/The_Loop">
+        The Loop
+      </a>
+      <br>
+    </li>
+    <li>
+      get_sidebar();
+    </li>
+    <li>
+      get_footer();
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>
+    Theme anatomy
+  </h2>
+  <div>
+    <img class="fit" src="images/index.php.png">
+  </div>
+</section>
+
+<section>
+  <h2>
+    Things are a bit split up
+  </h2>
+  <p>But not everything... like the whole loop</p>
+</section>
+
+<section>
+  <h2>
+    Get a template part  
     <a href="http://kovshenin.com/2013/get_template_part/">
       #
     </a>
@@ -651,7 +658,7 @@ Template Name: News
 </section>
 
 <section data-markdown>
-  #  So split things up in parts!
+  # So split things up in parts!
 </section>
 
 <section data-markdown>
@@ -727,7 +734,7 @@ public function form( $instance ) {
   $url              = esc_url_raw( $instance['url'] );
 
   // Display the admin form
-  include( plugin_dir_path(__FILE__) . 'views/admin.php' );
+  include( plugin_dir_path( __FILE__ ) . 'views/admin.php' );
 }
   ```
   </script>

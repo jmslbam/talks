@@ -1,7 +1,7 @@
 # Talk about WordPress templating
 
 ## View online
-View this presentation on [jaimemartinez.nl/talks/2015-wpfrl/](http://jaimemartinez.nl/talks/2015-wpfrl/)
+View this presentation on [jaimemartinez.nl/talks/2015-wpfrl/](http://jaimemartinez.nl/talks/2015-wpmfrl/)
 
 ## Introduction (dutch)
 Tijdens deze talk komen de basis principes van theme development ter sprake. Wat heb je nodig om te beginnen met het maken van een theme of wat moet je weten om er één aan te passen. We sluizen je door de template jungle van WordPress en plugins zoals WooCommerce, Download Manager of Tribe Event Calendar.
